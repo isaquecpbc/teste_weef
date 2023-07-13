@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../services/api";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function ListProduct() {
@@ -14,7 +14,7 @@ export default function ListProduct() {
     }, []);
 
     function getProduct() {
-        axios.get(`http://localhost/api/products/${id}`).then(function(response) {
+        api.get(`products/${id}`).then(function(response) {
             console.log(response.data.message);
             setInputs(response.data.data);
         });
@@ -28,7 +28,7 @@ export default function ListProduct() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.put(`http://localhost/api/products/${id}`, inputs).then(function(response){
+        api.put(`products/${id}`, inputs).then(function(response){
             console.log(response.data.message);
             navigate('/');
         });

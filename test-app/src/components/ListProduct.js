@@ -1,5 +1,5 @@
-import axios from "axios"
 import { useEffect, useState } from "react";
+import api from "../services/api";
 import { Link } from "react-router-dom";
 
 export default function ListProduct() {
@@ -10,14 +10,14 @@ export default function ListProduct() {
     }, []);
 
     function getProducts() {
-        axios.get('http://localhost/api/products/').then(function(response) {
+        api.get('products/').then(function(response) {
             console.log(response.data.message);
             setProducts(response.data.data);
         });
     }
 
     const deleteProduct = (id) => {
-        axios.delete(`http://localhost/api/products/${id}`).then(function(response){
+        api.delete(`products/${id}`).then(function(response){
             console.log(response.data.message);
             getProducts();
         });

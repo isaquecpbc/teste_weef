@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 export default function ListProduct() {
@@ -15,7 +15,7 @@ export default function ListProduct() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.post('http://localhost/api/products', inputs).then(function(response){
+        api.post('products', inputs).then(function(response){
             console.log(response.data);
             navigate('/');
         });
@@ -37,18 +37,18 @@ export default function ListProduct() {
                         </tr>
                         <tr>
                             <th>
-                                <label>Email: </label>
+                                <label>Description: </label>
                             </th>
                             <td> 
-                                <input type="text" name="email" onChange={handleChange} />
+                                <input type="text" name="description" onChange={handleChange} />
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                <label>Mobile: </label>
+                                <label>Price: </label>
                             </th>
                             <td>
-                                <input type="text" name="mobile" onChange={handleChange} />
+                                <input type="text" name="price" onChange={handleChange} />
                             </td>
                         </tr>
                         <tr>
