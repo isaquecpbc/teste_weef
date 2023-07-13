@@ -1,6 +1,11 @@
 import { useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export default function ListProduct() {
     const navigate = useNavigate();
@@ -22,43 +27,33 @@ export default function ListProduct() {
         
     }
     return (
-        <div>
-            <h1>Create product</h1>
-            <form onSubmit={handleSubmit}>
-                <table cellSpacing="10">
-                    <tbody>
-                        <tr>
-                            <th>
-                                <label>Name: </label>
-                            </th>
-                            <td>
-                                <input type="text" name="name" onChange={handleChange} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label>Description: </label>
-                            </th>
-                            <td> 
-                                <input type="text" name="description" onChange={handleChange} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label>Price: </label>
-                            </th>
-                            <td>
-                                <input type="text" name="price" onChange={handleChange} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan="2" align ="right">
-                                <button>Save</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
-        </div>
+        <Container>
+            <Row className="justify-content-md-center">
+                <Col>
+                    <h1 className="text-center">Create product</h1>
+                </Col>
+            </Row>
+            <Form id="productForm" onSubmit={handleSubmit}>
+            <Row className="justify-content-md-center">
+                    <Form.Group className="mb-3" controlId="productForm.name">
+                        <Form.Label>Name:</Form.Label>
+                        <Form.Control type="text" name="name" placeholder="product name" onChange={handleChange} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="productForm.description">
+                        <Form.Label>Description:</Form.Label>
+                        <Form.Control as="textarea" rows={3} name="description" onChange={handleChange}  />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="productForm.price">
+                        <Form.Label>Price:</Form.Label>
+                        <Form.Control type="number" name="price" placeholder="price" onChange={handleChange} />
+                    </Form.Group>
+                </Row>
+                <Row className="row row-cols-auto justify-content-end">
+                    <Col>
+                        <Button variant="outline-success" type="submit">Save</Button>
+                    </Col>
+                </Row>
+            </Form>
+        </Container>
     )
 }

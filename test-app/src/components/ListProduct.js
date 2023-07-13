@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
-import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 
 export default function ListProduct() {
 
@@ -23,34 +26,36 @@ export default function ListProduct() {
         });
     }
     return (
-        <div>
-            <h1>List Products</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((product, key) =>
-                        <tr key={key}>
-                            <td>{product.id}</td>
-                            <td>{product.name}</td>
-                            <td>{product.description}</td>
-                            <td>{product.price}</td>
-                            <td>
-                                <Link to={`product/${product.id}/edit`} style={{marginRight: "10px"}}>Edit</Link>
-                                <button onClick={() => deleteProduct(product.id)}>Delete</button>
-                            </td>
-                        </tr>
-                    )}
-                    
-                </tbody>
-            </table>
-        </div>
+        <Container>
+            <Row className="justify-content-md-center">
+                <Col>
+                    <h1 className="text-center">List Products</h1>
+                </Col>
+            </Row>
+            {products.map((product, key) =>
+            <Row key={key}>
+                <Card className="mb-3">
+                    <Card.Body>
+                        <Card.Title>{product.name}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">R$ {product.price}</Card.Subtitle>
+                        <Card.Text>
+                        {product.description}
+                        </Card.Text>
+                        <Row className="row row-cols-auto justify-content-end">
+                            <Col>
+                                <Card.Link href={`product/${product.id}/edit`}>Edit</Card.Link>
+                            </Col>
+                            <Col>
+                                <Card.Link 
+                                    className="btn btn-danger"
+                                    onClick={() => deleteProduct(product.id)}
+                                    >Delete</Card.Link>
+                            </Col>
+                        </Row>
+                    </Card.Body>
+                </Card>
+            </Row>
+            )}
+        </Container>
     )
 }
