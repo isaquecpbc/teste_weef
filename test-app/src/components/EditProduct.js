@@ -51,15 +51,15 @@ export default function ListProduct() {
                 <Row className="justify-content-md-center">
                     <Form.Group className="mb-3" controlId="productForm.name">
                         <Form.Label>Name:</Form.Label>
-                        <Form.Control value={inputs.name} type="text" name="name" placeholder="product name" onChange={handleChange} />
+                        <Form.Control value={inputs.name || ''} type="text" name="name" placeholder="product name" onChange={handleChange} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="productForm.description">
                         <Form.Label>Description:</Form.Label>
-                        <Form.Control as="textarea" rows={3}  value={inputs.description} name="description" onChange={handleChange}  />
+                        <Form.Control as="textarea" rows={3}  value={inputs.description || ''} name="description" onChange={handleChange}  />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="productForm.price">
                         <Form.Label>Price:</Form.Label>
-                        <Form.Control value={inputs.price} type="text" name="price" placeholder="price" onChange={handleChange} />
+                        <Form.Control value={inputs.price || ''} type="text" name="price" placeholder="price" onChange={handleChange} />
                     </Form.Group>
                 </Row>
                 <Row className="row row-cols-auto justify-content-end">
